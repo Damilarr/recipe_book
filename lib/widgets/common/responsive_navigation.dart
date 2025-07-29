@@ -55,13 +55,67 @@ class _ResponsiveNavigationState extends State<ResponsiveNavigation> {
     return Scaffold(
       body: Row(
         children: [
-          NavigationRail(
-            extended: true,
-            selectedIndex: selectedIndex,
-            onDestinationSelected: _onDestinationSelected,
-            destinations: destinations.map(_buildRailDestination).toList(),
+          Container(
+            width: 280,
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.surface,
+              border: Border(
+                right: BorderSide(
+                  color: Theme.of(context).primaryColor.withValues(alpha: 0.3),
+                  width: 1,
+                ),
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(24),
+                  child: Text(
+                    "Recipe Book",
+                    style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: NavigationRail(
+                    extended: true,
+                    backgroundColor: Colors.transparent,
+
+                    unselectedLabelTextStyle: TextStyle(
+                      fontSize: 16, //
+                      fontWeight: FontWeight.w500,
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.onSurface.withOpacity(0.7),
+                    ),
+                    selectedLabelTextStyle: TextStyle(
+                      fontSize: 16, //
+                      fontWeight: FontWeight.w600,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    unselectedIconTheme: IconThemeData(
+                      size: 24, //
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.onSurface.withOpacity(0.7),
+                    ),
+                    selectedIconTheme: IconThemeData(
+                      size: 24, //
+                      color: Theme.of(context).primaryColor,
+                    ),
+                    selectedIndex: selectedIndex,
+                    onDestinationSelected: _onDestinationSelected,
+                    destinations:
+                        destinations.map(_buildRailDestination).toList(),
+                  ),
+                ),
+              ],
+            ),
           ),
-          VerticalDivider(thickness: 1, width: 1),
           Expanded(child: destinations[selectedIndex].page),
         ],
       ),

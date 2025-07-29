@@ -83,6 +83,14 @@ class HomeScreen extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
                 foregroundColor: Colors.orange[600],
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(
+                    ResponsiveBreakpoints.isTablet(context) ||
+                            ResponsiveBreakpoints.isMobile(context)
+                        ? 20
+                        : 8,
+                  ),
+                ),
               ),
               child: Text('Explore Recipes'),
             ),
